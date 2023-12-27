@@ -1,63 +1,83 @@
+
+# LANGKAH MENJALANKAN DASHBOARD SEDERHANA DARI PROJECT AKHIR ANALISIS DATA DENGAN PYTHON
+### Disusun oleh M. Eko Cahyono (Selasa, 26 Desember 2023)
+
+##
+
+#### INFORMASI AWAL
+Dikarenakan processor serta RAM laptop penyusun yang rendah, maka penyusunan dashboard sederhana dilakukan dengan menggunakan Google Colabs. Adapun penjelasan agar dapat menjalankan streamlit dengan Google Colabs adalah sebagai berikut
+
+##
+
+### A. Setting Evirontment
+```sh
+! pip install streamlit -q
 import numpy as py
 import pandas as pd
 import streamlit as st
 import matplotlib as plt
+```
 
-st.title('Dashboard Sederhana')
-st.header('Project Akhir Analisis Data Dengan Python')
-st.text('Oleh : M. Eko Cahyono (Selasa, 26 Desember 2023)')
+##
+### B. Run Streamlit App
+```sh
+! streamlit run app.py & npx localtunnel --port 8501
+```
 
-st.text('''Analisis ini dilakukan pada dataset layanan bikecycle sharing
-(sewa sepeda). Adapun dataset yang dimaksud adalah sebagai berikut''')
+##
+### C. Detail Run Streamlit to Google Colab
 
-bikeCycleHour_df = pd.read_csv("https://raw.githubusercontent.com/eko558/Bikecycle_df/main/hour.csv")
-bikeCycleHour_df['season'] = bikeCycleHour_df['season'].astype(object)
-bikeCycleHour_df['datetime'] = pd.to_datetime(bikeCycleHour_df['datetime'])
-bikeCycleHour_df['month'] = bikeCycleHour_df['datetime'].dt.strftime('%B')
-bikeCycleHour_df['year'] = bikeCycleHour_df['datetime'].dt.year
-bikeCycleHour_df['month_num'] = bikeCycleHour_df['datetime'].dt.month
-bikeCycleHour_df['day number'] = bikeCycleHour_df['datetime'].dt.dayofweek
-bikeCycleHour_df['day of week'] = bikeCycleHour_df['datetime'].dt.strftime('%A')
-bikeCycleHour_df['total riders'] = bikeCycleHour_df['casual'] + bikeCycleHour_df['registered']
+##### 1. Create New Notebook to Google Colab
+#####
+![alt text](https://raw.githubusercontent.com/eko558/Cara-Akses-Dashboard/main/Buat%20Notepad%20Baru.png)
+#####
+#####
+##### 2. Upload File (App)
+#####
+![alt text](https://raw.githubusercontent.com/eko558/Cara-Akses-Dashboard/main/upload%20file%20py.png)
+#####
+##### 3. Input Code Berikut
+####
+##### a. Install Streamlit
+####
 
-#Kami definisikan musim terlebih dahulu
-pembagianMusim = {1: "Winter",
-                  2: "Spring",
-                  3: "Summer",
-                  4: "Fall"}
-bikeCycleHour_df['season'] = bikeCycleHour_df['season'].map(pembagianMusim)
-bikeCycleHour_df = bikeCycleHour_df[bikeCycleHour_df['registered'] >0]
-bikeCycleHour_df['total riders'] = bikeCycleHour_df['casual'] + bikeCycleHour_df['registered']
-bikeCycleHour_df['hour'] = bikeCycleHour_df['datetime'].dt.hour
-bikeCycleHour_df = bikeCycleHour_df[bikeCycleHour_df['year']==2011]
-bikeCycleHour_df['mean_month'] = bikeCycleHour_df['month'].map(bikeCycleHour_df.groupby('month')['total riders'].median())
-monthDict = []
-for i in enumerate(bikeCycleHour_df['month'].unique(),1):
-  monthDict.append(i)
-monthDict = dict(monthDict)
+```sh
+! pip install streamlit -q
+```
 
-st.write(bikeCycleHour_df)
+#####
+##### b. Ip Detector Widget
+####
+```sh
+!wget -q -O - ipv4.icanhazip.com
+```
+#####
+##### c. Streamlite Run Code
+####
+```sh
+! streamlit run app.py & npx localtunnel --port 8501
+```
 
-st.title('')
+#### Perhatikan Gambar Berikut
+####
+##### (Sebelum di run)
+![alt text](https://raw.githubusercontent.com/eko558/Cara-Akses-Dashboard/main/input%20code%20berikut.png)
+####
+##### (Sesudah di run satu per satu)
+![alt text](https://raw.githubusercontent.com/eko558/Cara-Akses-Dashboard/main/Run%20satu-satu%202.png)
 
-st.header('Pertanyaan 1')
-st.text('''Apakah perubahan musim mempengaruhi jumlah pengguna layanan sewa sepeda ?''')
+### 
+#### 4. Copy IP Adress
+![alt text](https://raw.githubusercontent.com/eko558/Cara-Akses-Dashboard/main/copy%20IP.png)
+### 
+#### 5. Klik Link yang ditampilkan
+![alt text](https://raw.githubusercontent.com/eko558/Cara-Akses-Dashboard/main/Click%20Link.png)
+### 
+#### 6. Paste IP Adress Pada Box dan Tombol 'Click to Submit' 
+![alt text](https://raw.githubusercontent.com/eko558/Cara-Akses-Dashboard/main/paste%20ip%20disini.png)
 
-st.header('')
-st.image("https://raw.githubusercontent.com/eko558/Picture-for-dicoding-analysis/main/Pengguna%20dan%20Perubahan%20Suhu.png")
-st.header('')
-st.text('''Berdasarkan grafik diatas, dapat diketahui bahwa hadirnya musim dingin mempengaruhi 
-turunya suhu, sehingga dengan menurunya suhu terjadi penurunan pula pada 
-jumlah pengguna layanan sewa sepeda''')
+# 
+Sekian langkah menjalankan dashboard sederhana melalui google colab. saya ucapkan terimakasih
 
-st.title('')
-st.header('Pertanyaan 2')
-st.text('Kapankah pengguna non subscription (casual rider) paling banyak menggunakan layanan ?')
 
-st.header('')
-st.image("https://raw.githubusercontent.com/eko558/Picture-for-dicoding-analysis/main/Pengguna%20Biasa.png")
-st.header('')
 
-st.text('''Berdasarkan grafik diatas dapat diketahui bahwa hari sabtu diantara pukul 14.00 
-hingga 15.00 merupakan pilihan terbaik pengguna non subscription (casual ridings
-untuk mengakses layanan sewa sepeda)''')
