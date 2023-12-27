@@ -1,3 +1,4 @@
+
 # LANGKAH MENJALANKAN DASHBOARD SEDERHANA DARI PROJECT AKHIR ANALISIS DATA DENGAN PYTHON
 ### Disusun oleh M. Eko Cahyono (Selasa, 26 Desember 2023)
 
@@ -7,6 +8,24 @@
 Dikarenakan processor serta RAM laptop penyusun yang rendah, maka penyusunan dashboard sederhana dilakukan dengan menggunakan Google Colabs. Adapun penjelasan agar dapat menjalankan streamlit dengan Google Colabs adalah sebagai berikut
 
 ##
+
+### A. Setting Evirontment
+```sh
+! pip install streamlit -q
+import numpy as py
+import pandas as pd
+import streamlit as st
+import matplotlib as plt
+```
+
+##
+### B. Run Streamlit App
+```sh
+! streamlit run app.py & npx localtunnel --port 8501
+```
+
+##
+### C. Detail Run Streamlit to Google Colab
 
 ##### 1. Create New Notebook to Google Colab
 #####
