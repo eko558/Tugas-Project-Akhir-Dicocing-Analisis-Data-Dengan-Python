@@ -11,11 +11,12 @@ Dikarenakan processor serta RAM laptop penyusun yang rendah, maka penyusunan das
 
 ### A. Setting Evirontment
 ```sh
-! pip install streamlit -q
-import numpy as py
-import pandas as pd
-import streamlit as st
-import matplotlib as plt
+!python --version
+!pip install -q condacolab
+import condacolab
+condacolab.install()
+!conda create --name main-ds python=3.10.12
+!pip install numpy pandas scipy matplotlib seaborn jupyter streamlit babel
 ```
 
 ##
